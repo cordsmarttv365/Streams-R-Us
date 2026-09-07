@@ -116,23 +116,18 @@ struct SplashView: View {
     }
 
     var body: some View {
-        ZStack {
-            Self.canvas.ignoresSafeArea()
-
-            VStack(spacing: 40) {
-                mark
-                Text(Self.tagline)
-                    .font(.system(size: 46, weight: .heavy))
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.6)
-                    .lineLimit(2)
-                    .opacity(taglineIn ? 1 : 0)
-                    .offset(y: taglineIn || reduceMotion ? 0 : 16)
-            }
+    Image("LaunchSplash")
+        .resizable()
+        .scaledToFill()
+        .ignoresSafeArea()
+        .onAppear {
+            DispatchQueue.main
+                    run()                          
         }
-        .opacity(fadingOut ? 0 : 1)
-        .onAppear(perform: run)
-    }
+
+
+            
+}
 
     private var mark: some View {
         ZStack {
